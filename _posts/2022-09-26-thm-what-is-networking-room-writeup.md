@@ -106,3 +106,7 @@ DHCP assigns IP addresses to devices. If a device is not manually assigned one, 
 request. A DHCP server on the same network can reply with a DHCP Offer, giving the device an IP address it can 
 use. The device then must send a DHCP Request reply to confirm taking that IP address, and the DHCP server will 
 send a DHCP ACK to acknowledge completion of the transaction.
+
+
+
+Read about the OSI model [**here!**](https://aerahan.github.io/the-osi-model)
