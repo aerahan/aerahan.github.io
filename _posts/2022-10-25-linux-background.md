@@ -23,7 +23,7 @@ Linux is an operating system, just like Windows. Something I didn't know until r
 
 #### Important Components
 - Bootloader - manages the boot process
-- Kernel - the core of the system and lowest level of the operating system that manages the CPU, memory, and <div title = "an internal/external device that connects to a computer but isn't a core component, such as a keyboard, mouse, or speaker" style = "color:blue;">peripheral devices</div>.
+- Kernel - the core of the system and lowest level of the operating system that manages the CPU, memory, and <div style = "color:blue;">peripheral devices</div>.
 - Daemons - background services (consider them servants) that run functions such as printing, scheduling, multimedia and sound during bootup or login. 
 - OS Shell - The shell is the command line that lets you control the OS using text. 
 - Graphical Server - a subsystem that provides graphics, called the X-server or X.
