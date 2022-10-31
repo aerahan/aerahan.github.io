@@ -41,6 +41,7 @@ A compiled list of linux commands that I'll keep adding to. Includes a general l
 
 ### Explanations & Examples
 
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 ##### ls
 `ls` lists files and directories in the current directory, or the specified directory. The command accepts flags. `-R` stands for recursive and will return all files in the subdirectories too, while `-a` will show hidden files that start with `.`. 
 Basic syntax: `ls [flags] [directory]`
@@ -51,6 +52,8 @@ Example:
 ```sh
 ls -l
 ```
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
 ##### man
@@ -65,13 +68,19 @@ mkdir (1)       - make directories
 mkdir (2)       - create a directory
 ```
 <br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
 
 ##### sudo
 `sudo` stands for superuser do, and allows you to perform admin tasks or have root privileges for a command. The general syntax is `sudo [command]`.
 <br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
 
 ##### pwd
 `pwd` prints the path of your current working directory. It can take the `-L` / `--logical` and `-P` / `--physical` options to print environment variable content (with symbolic links included) or the actual path of the current directory, respectively. 
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
 ##### cd
@@ -82,6 +91,8 @@ Example:
 cd /home/aerahan/Documents/schoolFiles
 ```
 Shortcuts: `cd ..` will move one directory up. `cd-` will go to the previous directory.
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
 ##### cat
@@ -98,6 +109,8 @@ cat file1.txt file2.txt > combined.txt // merges file1.txt and file2.txt and sto
 ```
 Use with command [`tac`](#tac) to display content in reverse order. 
 <br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
 
 ##### cp
 `cp` can copy files and directories and directory content. Files can be copied to other files or other directories. The `-R` flag will copy the entire directory.
@@ -108,6 +121,8 @@ Example:
 ```
 cp tester.txt /home/aerahan/Documents/website/hello.txt
 ```
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
 ##### mv
