@@ -48,7 +48,7 @@ Example:
 ```sh
 ls -l
 ```
-
+\
 
 ##### man
 man is a built-in manual for commands in linux. The scroll wheel/mouse, up and down keys, and PgDn and PgUp keys can all be used to navigate through the manual. Q/q is pressed to exit. The basic syntax is simply `man [command]`.
@@ -60,11 +60,11 @@ man -f mkdir
 mkdir (1)       - make directories
 mkdir (2)       - create a directory
 ```
-
+\
 
 ##### sudo
 sudo stands for superuser do, and allows you to perform admin tasks or have root privileges for a command. The general syntax is `sudo [command]`.
-
+\
 
 ##### pwd
 ##### cd
