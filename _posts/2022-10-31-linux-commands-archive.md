@@ -20,13 +20,13 @@ A compiled list of linux commands that I'll keep adding to. Includes a general l
 ##### ls
 ls lists files and directories in the current directory, or the specified directory. The command accepts flags. 
 Basic syntax: 
-```shell
+```console
 ls [flags] [directory]
 ```
 General shortcuts: / for root, .. for parent directory one level above, ../.. for two levels above, ~ for home directory.
 
 Example:
-```shell
+```console
 ls -l
 ```
 
@@ -36,8 +36,10 @@ man is a built-in manual for commands in linux. The scroll wheel/mouse, up and d
 man pages can include information such as the name, synopsis, configuration, description, examples, defaults, options, exit status, environment, files, authors, history, notes, bugs, etc. 
 
 Example:
-```shell
-man -f mkdir
+```console
+linux@aerahan:~$ man -f mkdir
+mkdir (1)       - make directories
+mkdir (2)       - create a directory
 ```
 
 
