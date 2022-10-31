@@ -73,12 +73,14 @@ mkdir (2)       - create a directory
 
 ##### sudo
 `sudo` stands for superuser do, and allows you to perform admin tasks or have root privileges for a command. The general syntax is `sudo [command]`.
+
 <br />
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
 ##### pwd
 `pwd` prints the path of your current working directory. It can take the `-L` / `--logical` and `-P` / `--physical` options to print environment variable content (with symbolic links included) or the actual path of the current directory, respectively. 
+
 <br />
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
@@ -91,6 +93,7 @@ Example:
 cd /home/aerahan/Documents/schoolFiles
 ```
 Shortcuts: `cd ..` will move one directory up. `cd-` will go to the previous directory.
+
 <br />
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
@@ -108,6 +111,7 @@ cat > hello2.txt // creates a new file
 cat file1.txt file2.txt > combined.txt // merges file1.txt and file2.txt and stores as combined.txt
 ```
 Use with command [`tac`](#tac) to display content in reverse order. 
+
 <br />
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
@@ -118,7 +122,7 @@ Use with command [`tac`](#tac) to display content in reverse order.
 Basic syntax: `cp [source] [destination]`
 
 Example: 
-```
+```sh
 cp tester.txt /home/aerahan/Documents/website/hello.txt
 ```
 <br />
@@ -126,7 +130,36 @@ cp tester.txt /home/aerahan/Documents/website/hello.txt
 <br />
 
 ##### mv
+`mv` can be used to move or rename files and directories. 
+
+Basic syntax: `mv [source] [destination]`
+
+Example:
+```sh
+mv tester.txt /home/aerahan/Documents/testFiles
+mv helloworld.txt HelloWorld.txt
+```
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
+
 ##### mkdir
+`mkdir` creates directories and can set permissions at the same time. 
+
+Basic syntax: `mkdir [option] [directoryName]`
+
+Basic options: `-m` can set file permissions. `-m777` will set full read, write, and execute permissions. `-v` will print a message when the directory is created. By default, no message is printed. `-p` / `--parents` will make a directory in between two folders.
+
+Example: Create 'rap' directory inside music, create 'test' directory with full read/write/execute permissions, and create 'songs' directory between 'music' and 'rap'.
+```sh
+mkdir /music/rap
+mkdir -m777 test
+mkdir -p /music/songs/rap
+```
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
+
 ##### touch
 ##### find
 ##### grep
