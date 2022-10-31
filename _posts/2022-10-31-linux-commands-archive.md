@@ -37,7 +37,7 @@ A compiled list of linux commands that I'll keep adding to. Includes a general l
 
 
 
-  
+<br />
 ### Explanations & Examples
 
 ##### ls
@@ -48,7 +48,8 @@ General shortcuts: / for root, .. for parent directory one level above, ../.. fo
 Example:
 ```sh
 ls -l
-```  
+```
+<br />
 
 ##### man
 man is a built-in manual for commands in linux. The scroll wheel/mouse, up and down keys, and PgDn and PgUp keys can all be used to navigate through the manual. Q/q is pressed to exit. The basic syntax is simply `man [command]`.
@@ -59,10 +60,12 @@ Example:
 man -f mkdir
 mkdir (1)       - make directories
 mkdir (2)       - create a directory
-```  
+```
+<br />
 
 ##### sudo
-sudo stands for superuser do, and allows you to perform admin tasks or have root privileges for a command. The general syntax is `sudo [command]`.  
+sudo stands for superuser do, and allows you to perform admin tasks or have root privileges for a command. The general syntax is `sudo [command]`.
+<br />
 
 ##### pwd
 ##### cd
