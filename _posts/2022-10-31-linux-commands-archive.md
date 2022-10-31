@@ -3,7 +3,7 @@ title: "Linux Commands Archive"
 layout: post
 date: 2022-10-31
 feature_image: images/linux_commands.png
-tags: [linux]
+tags: [linux, archive]
 ---
 
 A compiled list of linux commands that I'll keep adding to. Includes a general list section, and then an explanation/example section. They aren't in alphabetical order, so please use your browser's search/find function!
