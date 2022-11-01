@@ -1,5 +1,9 @@
 ---
-
+title: "x86 Assembly Basics"
+layout: post
+date: 2022-11-01
+feature_image: images/x86_assembly.png
+tags: [x86, assembly, programming]
 ---
 
 x86 assembly is a low-level programming language that is converted into machine executable code by a utility program such as MASM (Windows) or NASM (Linux). Low-level languages use assemblers to directly translate and are machine-oriented, while high-level languages such as Python use a compiler or interpreter and are more user-friendly.
