@@ -11,20 +11,39 @@ Low-level languages are faster than high-level but slower than machine languages
 
 <!--more-->
 
-### Benefits of Assembly Language
-- Less memory
-- Shorter execution time
-- 
+## Table of Contents
+1. [Advantages & Disadvantages of Assembly](#advantages-of-assembly-language)
+2. [Registers](#registers)
+[Sources](#sources)
 
-### PC Hardware
+### Advantages of Assembly Language
+- Less memory
+- Shorter execution time & increased efficiency
+- Can write code to access registers
+- Helps understand processers and memory
+- Better control on hardware
+
+### Disadvantages of Assembly Language
+- Lack of portability due to machine-architecture dependence
+- Complex, and difficult syntax
+- Effort.
+
+### Registers
 PC hardware has main components of a processor, memory, and registers.
 Registers are essential for assembly and are processor components that hold data and addresses.
 
 
 
+# of assignments left?
+mentioned 2 syntaxes/types of x86 assembly?
+
+intel
+intel and at&t
+rit.edu/library
+hacking: the art of exploitation
 
 
-Sources:
+#### Sources & References
 Adapted from materials developed for University of Virginia cs216 by David Evans. This guide was revised for cs216 by David Evans, based on materials originally created by Adam Ferrari many years ago, and since updated by Alan Batson, Mike Lack, and Anita Jones.
 https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
 
