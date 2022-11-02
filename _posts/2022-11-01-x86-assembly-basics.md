@@ -11,10 +11,16 @@ Low-level languages are faster than high-level but slower than machine languages
 
 <!--more-->
 
+This blog post covers Intel syntax (AT&T syntax also exists).
+
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
 ## Table of Contents
 1. [Advantages & Disadvantages of Assembly](#advantages-of-assembly-language)
 2. [Registers](#registers)
 [Sources](#sources)
+
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 ### Advantages of Assembly Language
 - Less memory
@@ -28,19 +34,32 @@ Low-level languages are faster than high-level but slower than machine languages
 - Complex, and difficult syntax
 - Effort.
 
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
 ### Registers
 PC hardware has main components of a processor, memory, and registers.
-Registers are essential for assembly and are processor components that hold data and addresses.
+Registers are essential for assembly and are processor components that hold data and addresses. They are like variables for the processor. Most processors now have eight 32-bit general purpose registers. They have names but are currently used for a variety of purposes. Case also does not matter, so EDX and edx mean the same.
+- **EAX** - *Accumulator*
+- **ECX** - *Counter*
+- **EDX** - *Data*
+- **EBX** - *Base*
+
+eax, ecx, edx, and ebx are mainly used as temporary variables for the processor to execute machine instructions. For these four, you can use subsections and split it into a 16-bit register. For example, the least two significant bytes of EAX can become a 16-bit AX, with the same going for ECX and CX. From there, the least significant byte of AX can become a single 8-bit register AL and the most significant byte of AX can become AH. However, these names all point to the same physical register, so a change in one will affect all others. For example, placing a number into DX will also affect EDX, DL, and DH. 
+
+- **ESP** - *Stack Pointer*
+- **EBP** - *Base Pointer*
+- **ESI** - *Source Index*
+- **EDI** - *Destination Index*
+
+esp, ebp, esi, and edi are general purpose registers but are also called pointers and indexes. esp and ebp hold 32-bit addresses which point to a memory location. 
 
 
 
-# of assignments left?
-mentioned 2 syntaxes/types of x86 assembly?
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-intel
-intel and at&t
-rit.edu/library
-hacking: the art of exploitation
+
+
+
 
 
 #### Sources & References
@@ -48,3 +67,7 @@ Adapted from materials developed for University of Virginia cs216 by David Evans
 https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
 
 https://www.tutorialspoint.com/assembly_programming/assembly_introduction.htm
+
+
+Erickson, Jon. Hacking : The Art of Exploitation, No Starch Press, Incorporated, 2008. ProQuest Ebook Central, http://ebookcentral.proquest.com/lib/rit/detail.action?docID=1137538.
+Created from rit on 2022-11-02 14:07:18.
