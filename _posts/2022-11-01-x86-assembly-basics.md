@@ -39,6 +39,12 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 ### Registers
 PC hardware has main components of a processor, memory, and registers.
 Registers are essential for assembly and are processor components that hold data and addresses. They are like variables for the processor. Most processors now have eight 32-bit general purpose registers. They have names but are currently used for a variety of purposes. Case also does not matter, so EDX and edx mean the same.
+
+<a href="https://www.cs.virginia.edu/~evans/cs216/guides/x86.html">
+<img src="/images/x86-registers.png" alt="chart of registers" /></a>
+
+Source: From materials developed for University of Virginia cs216 by David Evans.
+
 - **EAX** - *Accumulator*
 - **ECX** - *Counter*
 - **EDX** - *Data*
