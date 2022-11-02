@@ -42,7 +42,7 @@ A compiled list of linux commands that I'll keep adding to. Includes a general l
 ### Explanations & Examples
 
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
-##### ls
+#### ls
 `ls` lists files and directories in the current directory, or the specified directory. The command accepts flags. `-R` stands for recursive and will return all files in the subdirectories too, while `-a` will show hidden files that start with `.`. 
 Basic syntax: `ls [flags] [directory]`
 
@@ -57,7 +57,7 @@ drwxr-xr-x. 1 aerahan aerahan 48 Oct 26 16:21 Documents
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### man
+#### man
 `man` is a built-in manual for commands in linux. The scroll wheel/mouse, up and down keys, and PgDn and PgUp keys can all be used to navigate through the manual. Q/q is pressed to exit. The basic syntax is simply `man [command]`.
 
 Man pages can include information such as the name, synopsis, configuration, description, examples, defaults, options, exit status, environment, files, authors, history, notes, bugs, etc. 
@@ -72,7 +72,7 @@ mkdir (2)       - create a directory
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### sudo
+#### sudo
 `sudo` stands for superuser do, and allows you to perform admin tasks or have root privileges for a command. The general syntax is `sudo [command]`.
 
 Example:
@@ -88,7 +88,7 @@ This command requires root privileges.
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### pwd
+#### pwd
 `pwd` prints the path of your current working directory. It can take the `-L` / `--logical` and `-P` / `--physical` options to print environment variable content (with symbolic links included) or the actual path of the current directory, respectively. 
 
 Example:
@@ -101,7 +101,7 @@ Example:
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### cd
+#### cd
 `cd` changes the current directory. Running it by itself as `cd` will take the user to the home folder. If you wish to go to a child directory, simply the directory name will do. If you wish to go somewhere completely else, the command will need the full path. 
 
 Example:
@@ -114,7 +114,7 @@ Shortcuts: `cd ..` will move one directory up. `cd-` will go to the previous dir
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### cat
+#### cat
 concatenate will write file content to standard output so you can read it easily. 
 `cat` can also be used to create a new file and combine files. Use `cat > filename` to create a new file and `cat filename filename2 > filename3` to store a merged file. 
 
@@ -132,7 +132,7 @@ Use with command [`tac`](#tac) to display content in reverse order.
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### cp
+#### cp
 `cp` can copy files and directories and directory content. Files can be copied to other files or other directories. The `-R` flag will copy the entire directory.
 
 Basic syntax: `cp [source] [destination]`
@@ -145,7 +145,7 @@ cp tester.txt /home/aerahan/Documents/website/hello.txt
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### mv
+#### mv
 `mv` can be used to move or rename files and directories. 
 
 Basic syntax: `mv [source] [destination]`
@@ -159,7 +159,7 @@ mv helloworld.txt HelloWorld.txt
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### mkdir
+#### mkdir
 `mkdir` creates directories and can set permissions at the same time. 
 
 Basic syntax: `mkdir [option] [directoryName]`
@@ -176,7 +176,7 @@ mkdir -p /music/songs/rap
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
-##### touch
+#### touch
 `touch` can be used to create a new, empty file, and to also change file timestamps. Using it on an existing file will change the access and modification times to the current time, while using it on an argument that doesn't exist will create an empty file. 
 
 Common flags: `-a` to change only the access time, `-m` to change only the modifiction time, `-c` to not create any files.
@@ -185,22 +185,34 @@ Example:
 ```sh
 [aerahan@fedorahat ~]$ touch newFile.txt
 ```
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
 
-##### find
-##### grep
+#### find
+
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
+
+#### grep
 
 `grep` prints lines that matches patterns. It searches for a pattern in each file, and each line that matches will be printed. 
 
 Common flags: `-i` / `--ignore-case` will ignore case when searching for a pattern. On the flip side, `--no-ignore-case` will do the opposite - and is the default option. `-v` / `--invert-match` will invert the matching and print non-matching lines instead. `-c` / `--count` will print the number of matching lines instead. 
 
-##### tail
-##### chmod
-##### ping
-##### wget
-##### uname
-##### clear
-##### history
-##### echo
-##### hostname
-##### su
-##### useradd
+<br />
+<div align="center">────────❀*̥˚──────❀*̥˚───────</div>
+<br />
+
+#### tail
+#### chmod
+#### ping
+#### wget
+#### uname
+#### clear
+#### history
+#### echo
+#### hostname
+#### su
+#### useradd
