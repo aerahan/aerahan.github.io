@@ -51,6 +51,7 @@ General shortcuts: `/` for root, `..` for parent directory one level above, `../
 Example:
 ```sh
 ls -l
+drwxr-xr-x. 1 aerahan aerahan 48 Oct 26 16:21 Documents
 ```
 <br />
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
@@ -74,12 +75,27 @@ mkdir (2)       - create a directory
 ##### sudo
 `sudo` stands for superuser do, and allows you to perform admin tasks or have root privileges for a command. The general syntax is `sudo [command]`.
 
+Example:
+```sh
+[aerahan@fedorahat ~]$ rmdir Documents
+This command requires root privileges.
+[aerahan@fedorahat ~]$ sudo !!
+```
+
+`sudo !!` is a helpful shortcut to repeat the previous command typed and entered but with sudo, so you don't have to retype the whole command.
+
 <br />
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
 <br />
 
 ##### pwd
 `pwd` prints the path of your current working directory. It can take the `-L` / `--logical` and `-P` / `--physical` options to print environment variable content (with symbolic links included) or the actual path of the current directory, respectively. 
+
+Example:
+```sh
+[aerahan@fedorahat ~]$ pwd
+/home/aerahan
+```
 
 <br />
 <div align="center">────────❀*̥˚──────❀*̥˚───────</div>
@@ -161,8 +177,22 @@ mkdir -p /music/songs/rap
 <br />
 
 ##### touch
+`touch` can be used to create a new, empty file, and to also change file timestamps. Using it on an existing file will change the access and modification times to the current time, while using it on an argument that doesn't exist will create an empty file. 
+
+Common flags: `-a` to change only the access time, `-m` to change only the modifiction time, `-c` to not create any files.
+
+Example:
+```sh
+[aerahan@fedorahat ~]$ touch newFile.txt
+```
+
 ##### find
 ##### grep
+
+`grep` prints lines that matches patterns. It searches for a pattern in each file, and each line that matches will be printed. 
+
+Common flags: `-i` / `--ignore-case` will ignore case when searching for a pattern. On the flip side, `--no-ignore-case` will do the opposite - and is the default option. `-v` / `--invert-match` will invert the matching and print non-matching lines instead. `-c` / `--count` will print the number of matching lines instead. 
+
 ##### tail
 ##### chmod
 ##### ping
