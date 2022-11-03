@@ -62,6 +62,12 @@ esp, ebp, esi, and edi are general purpose registers but are also called pointer
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
+### Operations
+The basic syntax for instructions is typically `operation <destination>,<source>`. The destination and source values are usually a value, memory address, or a register.
+- **mov** - moves a value from source to destination
+- **sub** - subtracts source from destination and stores in destination
+- **add** - adds values and stores in destination
+
 
 
 
