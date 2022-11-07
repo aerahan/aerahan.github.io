@@ -8,10 +8,10 @@ tags: [mysql, database, basics]
 
 MySQL is a popular open source relational database management system. 
 
-<!--more-->
 
 Most MySQL commands are self explanatory, so I'll just generally drop an example or syntax with a short explanation. One note, a MySQL statement ends at the semi-colon `;`. 
 
+<!--more-->
 
 <div align="center">■ □ ■ □ ■ □ ■ □ ■ □ ■</div>
 
