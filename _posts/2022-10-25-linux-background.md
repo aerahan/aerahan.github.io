@@ -69,7 +69,7 @@ bash:~$ man ls
 which will provide the ls documentation. 
 
 
-For more on Linux, check out my upcoming blog posts on Linux Fundamentals and Linux Commands !
+For more on Linux, check out my upcoming blog posts on Linux Fundamentals and [Linux Commands](https://aerahan.github.io/linux-commands-archive) !
 
 ###### Sources & Additional Resources
 https://tryhackme.com/room/linuxfundamentalspart1
