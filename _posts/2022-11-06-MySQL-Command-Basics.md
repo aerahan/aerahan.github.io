@@ -2,7 +2,7 @@
 title: "MySQL Command Basics"
 layout: post
 date: 2022-11-06-22
-feature_image: images/
+feature_image: images/mysql_command_basics.png
 tags: [mysql, database, basics]
 ---
 
