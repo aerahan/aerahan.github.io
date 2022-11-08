@@ -13,14 +13,22 @@ Low-level languages are faster than high-level but slower than machine languages
 
 This blog post covers Intel syntax (AT&T syntax also exists).
 
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
 
 ## Table of Contents
 1. [Advantages & Disadvantages of Assembly](#advantages-of-assembly-language)
 2. [Registers](#registers)
+3. [Directives](#directives)
+4. [Data Types](#data-types)
+5. [Operations](#operations)
+6. [Referencing & Dereferencing(#referencing-dereferencing)
 [Sources](#sources)
 
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
 
 ### Advantages of Assembly Language
 - Less memory
@@ -34,7 +42,9 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 - Complex, and difficult syntax
 - Effort.
 
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
 
 ### Registers
 PC hardware has main components of a processor, memory, and registers.
@@ -62,22 +72,94 @@ esp, ebp, esi, and edi are general purpose registers but are also called pointer
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
+
+### Directives
+Directives are instructions to the assembler. Some uses are to declare or reserve memory variables, declare code, data areas, etc. They start with `.`.
+`.model`, `.data`, and `.code` are all directives. `INVOKE` and `PROC` are also directives.
+
+
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
+### Data Types
+Comments start with a semi-colon `;`. 
+
+- **BYTE** db - 1 byte
+- **WORD** dw - 2 bytes
+- **DWORD** dd - 4 bytes
+
+`BYTE` is typically used for characters while `DWORD` is typically used for integers. `db`, `dw`, and `dd` are shorthand for the data types. 
+
+**Syntax:** <name><type><value>
+
+Example variables and arrays:
+```asm
+myInt DWORD 10
+mySecondInt dd 20 ;this is also a DWORD
+message BYTE "ABC" ;an array of characters
+```
+Arrays in assembly can't be indexed like in other programming languages such as Python. 
+Hexadecimal characters can also be used to make escaped characters such as a newline. `0Ah` in particular is a newline while `0` is a null-terminator. 
+```asm
+message db "ABC",0Ah,0 ;this puts a new line after 'ABC'
+```
+Variables can be declared in the `.data` directive section. 
+
+
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
 ### Operations
 The basic syntax for instructions is typically `operation <destination>,<source>`. The destination and source values are usually a value, memory address, or a register.
-- **mov** - moves a value from source to destination
-- **sub** - subtracts source from destination and stores in destination
-- **add** - adds values and stores in destination
+- **mov** *<destination>,<value>* - moves a value from source to destination
+- **sub** *<dest>,<src>* - subtracts source from destination and stores in destination
+- **add** *<dest>,<src>* - adds values and stores in destination
+- **mul** *<src>* - multiplies `eax` by source
+- **div** *<src>* - divides `eax` by source.
+
+To compute `((10 + 20) * 2) / 5`:
+```asm
+.data
+  value DWORD 10
+.code
+  main PROC c
+    mov eax,10 ;moves 10 into eax register
+    add eax,20 ;adds 20 to eax, now holds 30
+    mov ebx,2 ;moves 2 into ebx register
+    mul ebx ;multiplies eax by ebx and stores in eax, now holds 60
+    mov ecx,5 ;moves 5 into ecx register
+    div ecx ;divides eax by ecx, eax now holds 12
+  INVOKE ExitProcess,0
+  main endp
+end
+```
+
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
+### Referencing & Dereferencing
+Dereferencing is used to acess or change data in a memory location that is pointed to by a pointer. 
+Referencing is where the address of an existing variable is used and a pointer variable is set to point at that address location. 
+
+To dereference in assembly,
+To reference in assembly, 
 
 
 
-
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 
 #### Sources & References
+Introduction to x86 Assembly for CSEC-201 by Gahyun Park,
+Lectures by James Brigden.
+
 Adapted from materials developed for University of Virginia cs216 by David Evans. This guide was revised for cs216 by David Evans, based on materials originally created by Adam Ferrari many years ago, and since updated by Alan Batson, Mike Lack, and Anita Jones.
 https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
 
 https://www.tutorialspoint.com/assembly_programming/assembly_introduction.htm
+
+https://research.ncl.ac.uk/game/mastersdegree/programmingforgames/pointers/pointers.pdf
+
 
 
 Erickson, Jon. Hacking : The Art of Exploitation, No Starch Press, Incorporated, 2008. ProQuest Ebook Central, http://ebookcentral.proquest.com/lib/rit/detail.action?docID=1137538.
