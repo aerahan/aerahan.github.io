@@ -106,6 +106,11 @@ message db "ABC",0Ah,0 ;this puts a new line after 'ABC'
 Variables can be declared in the `.data` directive section. 
 
 
+Endianness is the order that bytes in computer memory are read in.
+Big-endian is where the big end (most significant value) is stored first at the lowest storage address, while little-endian is where the little end (least significant value) is stored first at the lowest storage address. 
+While network data uses big-endian, most systems assembly is compiled on use little-endian. 
+
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 
@@ -138,11 +143,20 @@ end
 
 
 ### Referencing & Dereferencing
+A pointer is a memory location/variable that points to another memory location. 
 Dereferencing is used to acess or change data in a memory location that is pointed to by a pointer. 
 Referencing is where the address of an existing variable is used and a pointer variable is set to point at that address location. 
 
-To dereference in assembly,
-To reference in assembly, 
+To dereference in assembly, use square brackets to access the value at an address, such as `[eax]` to acess the memory address held in the EAX register (if held). In the C programming language, this is equivalent to using `*`. 
+To reference in assembly, use `offset <variable>` to get the address of the variable. In the C programming language, this is equivalent to using `&`.
+
+```asm
+varNum DWORD 20 ;int varNum = 20
+mov ebx,offset var ;int *ebx = &varNum 
+add varNum,10 ;varNum = varNum + 10
+
+UM
+```
 
 
 
@@ -164,3 +178,9 @@ https://research.ncl.ac.uk/game/mastersdegree/programmingforgames/pointers/point
 
 Erickson, Jon. Hacking : The Art of Exploitation, No Starch Press, Incorporated, 2008. ProQuest Ebook Central, http://ebookcentral.proquest.com/lib/rit/detail.action?docID=1137538.
 Created from rit on 2022-11-02 14:07:18.
+
+
+
+
+
+%x for hexadecimal %i for integers
