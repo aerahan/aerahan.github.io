@@ -24,6 +24,8 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 4. [Data Types](#data-types)
 5. [Operations](#operations)
 6. [Referencing & Dereferencing(#referencing-dereferencing)
+7. [Importing Libraries](#importing-libraries)
+8. [Stack](#stack)
 [Sources](#sources)
 
 
@@ -77,6 +79,14 @@ esp, ebp, esi, and edi are general purpose registers but are also called pointer
 Directives are instructions to the assembler. Some uses are to declare or reserve memory variables, declare code, data areas, etc. They start with `.`.
 `.model`, `.data`, and `.code` are all directives. `INVOKE` and `PROC` are also directives.
 
+**Pointer directives** are size specifying directives. DWORD variables are technically pointers - they point to the first byte of the character array (that would be the value stored at the lowest memory, see [Endianness](#data types) for more). 
+```asm
+.data
+  myWord DWORD 112233h
+.code
+  mov myWord 
+```
+
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
@@ -108,7 +118,9 @@ Variables can be declared in the `.data` directive section.
 
 Endianness is the order that bytes in computer memory are read in.
 Big-endian is where the big end (most significant value) is stored first at the lowest storage address, while little-endian is where the little end (least significant value) is stored first at the lowest storage address. 
-While network data uses big-endian, most systems assembly is compiled on use little-endian. 
+While network data uses big-endian, most systems assembly is compiled on use little-endian. For a network data example, the 32-bit IP address 127.0.0.1 (7F 00 00 01 in hex) would be sent over the network as 0x7F000001 but stored in memory as 0x0100007F.
+
+![Endianness chart](/images/endianness.png)]
 
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
@@ -157,6 +169,28 @@ add varNum,10 ;varNum = varNum + 10
 
 UM
 ```
+
+
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
+### Importing Libraries
+Just like other programming languages, assembly can also import libraries as a `.lib` file. The imports are dynamic and must be compiled. 
+The `includelib` directive is used to import a library (see [directives](#directives) for more information). 
+
+Typically, for a standard assembly program with masm in Visual Studio, two basic libraries are needed. `libcmt.lib`, a Microsoft C runtime library, which is required by the other library - `legacy_stdio_definitions.lib`, which includes stdio.h functions such as printf.
+
+Importing .lib files also uses `extern` or `PROTO`. Extern tells that a function will be in the library, and `NEAR` shows that the function is in the same segment of memory. In modern systems, functions are in the same memory segment, so it is typically seen. For example, `extern printf:NEAR`. To call the function, it can be invoked with `call printf`. The arguments should be passed to the function through placing them on the stack (see [Stack](#stack) for more). 
+
+`PROTO`, on the other hand, will set up a function. It is called with `INVOKE`. For example, `ExitProcess PROTO,dwExitCode:DWORD` and `INVOKE ExitProcess,0`.
+
+
+
+<div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
+### Stack
+
 
 
 
