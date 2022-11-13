@@ -142,17 +142,21 @@ Syntax: `A ∩ B` and `A INTERSECT B`
 Intersections can use `IN` and `EXISTS` with subqueries. 
 
 STUDENT
+
 | stuID      | name       | majorCode  |
 | ---------- | ---------- | ---------- |
 | 100101     | Aera Han   | CYS        |
 | 100102     | June Park  | ENR        |
 | 100103     | AJ Wiliams | PHG        |
 
+
 PART_TIMERS
+
 | stuID      | job        | 
 | ---------- | ---------- | 
 | 100101     | tutor      | 
 | 100103     | assistant  | 
+
 
 ```sql
 # display all students with a job
