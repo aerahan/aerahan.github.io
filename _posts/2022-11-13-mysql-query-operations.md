@@ -1,12 +1,12 @@
 ---
-title: "SQL - Querying Data"
+title: "MySQL - Query Operations"
 layout: post
 date: 2022-11-13
-feature_image: images/
-tags: [mysql, database, basics]
+feature_image: images/mysql_query_operations.png
+tags: [mysql, database]
 ---
 
-
+Following my post on [MySQL Command Basics](https://aerahan.github.io/MySQL-Command-Basics), this post goes more in-depth on querying data and the operations used. 
 
 <!--more-->
 
