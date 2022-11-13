@@ -66,6 +66,10 @@ Example:
 SELECT name
 FROM student;
 ```
+{% highlight sql %}
+SELECT name
+FROM student;
+{% endhighlight %}
 
 
 <div align="center">── ⋅ ⋅ ── ✩ ── ⋅ ⋅ ──</div>
