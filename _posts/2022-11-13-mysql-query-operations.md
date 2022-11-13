@@ -43,6 +43,7 @@ Syntax: `RELATION[attr1, attr2, attr4]` and `π attr1,attr2,attr4 (RELATION)` (w
 
 Example:
 STUDENT
+
 | stuID      | name       | major      |
 | ---------- | ---------- | ---------- |
 | 100101     | Aera Han   | CyberSec   |
@@ -50,11 +51,13 @@ STUDENT
 | 100103     | AJ Wiliams | Photogrphy |
 
 `STUDENT[name]` would display 
+
 | name       |
 | ---------- |
 | Aera Han   |
 | June Park  |
 | AJ Wiliams |
+
 
 In MySQL, projection can be done through the `SELECT` clause and selection can be done through the `WHERE` clause of a `SELECT` statement. 
 
@@ -227,6 +230,7 @@ Subqueries allow for two queries to be combined.
 
 Example: 
 STUDENT
+
 | stuID      | name       | majorCode  |
 | ---------- | ---------- | ---------- |
 | 100101     | Aera Han   | CYS        |
@@ -234,11 +238,13 @@ STUDENT
 | 100103     | AJ Wiliams | PHG        |
 
 MAJORS
+
 | majorCode  | major      | 
 | ---------- | ---------- | 
 | CYS        | Cybrsecrty | 
 | ENR        | Engineerng | 
 | PHG        | Photogrphy |
+
 
 ```sql
 SELECT majorCode
