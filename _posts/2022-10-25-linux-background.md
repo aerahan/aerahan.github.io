@@ -44,7 +44,7 @@ Linux distributions or distros are simply different versions that can be downloa
 
 #### Linux Commands
 This is the basic command structure:
-```console
+```shell
 Command -options otherParamaters
 ```
 Most commands allow arguments to be provided. You can tell arguments apart as they start with a hyphen (-). Following the hyphen is what is called a flag or switch. 
