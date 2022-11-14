@@ -156,7 +156,7 @@ Endianness is the order that bytes in computer memory are read in.
 Big-endian is where the big end (most significant value) is stored first at the lowest storage address, while little-endian is where the little end (least significant value) is stored first at the lowest storage address. 
 While network data uses big-endian, most systems assembly is compiled on use little-endian. For a network data example, the 32-bit IP address 127.0.0.1 (7F 00 00 01 in hex) would be sent over the network as 0x7F000001 but stored in memory as 0x0100007F.
 
-![Endianness chart](/images/endianness.png)]
+![Endianness chart](/images/endianness.png)
 
 <br>
 <br>
