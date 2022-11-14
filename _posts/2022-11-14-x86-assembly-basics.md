@@ -1,7 +1,7 @@
 ---
 title: "x86 Assembly Basics"
 layout: post
-date: 2022-11-01
+date: 2022-11-14
 feature_image: images/x86_assembly.png
 tags: [x86, assembly, programming]
 ---
@@ -86,7 +86,7 @@ Directives are instructions to the assembler. Some uses are to declare or reserv
 .code
     mov myWord 
 ```
-FINISH THIS 
+<here>
 
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
@@ -188,7 +188,7 @@ varNum DWORD 20 ;int varNum = 20
 mov ebx,offset var ;int *ebx = &varNum 
 add varNum,10 ;varNum = varNum + 10
 
-UM
+<here>
 ```
 
 
@@ -300,23 +300,14 @@ end
 
 
 #### Sources & References
-Introduction to x86 Assembly for CSEC-201 by Gahyun Park,
-Lectures by James Brigden.
 
-Adapted from materials developed for University of Virginia cs216 by David Evans. This guide was revised for cs216 by David Evans, based on materials originally created by Adam Ferrari many years ago, and since updated by Alan Batson, Mike Lack, and Anita Jones.
-https://www.cs.virginia.edu/~evans/cs216/guides/x86.html
+Introduction to x86 Assembly for CSEC-201 by [Gahyun Park](https://www.rit.edu/directory/gxpics-gahyun-park)
+
+Lectures by [James Brigden](https://www.rit.edu/directory/jgbics-james-brigden).
+
+Adapted from [materials](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html) developed for University of Virginia cs216 by David Evans. This guide was revised for cs216 by David Evans, based on materials originally created by Adam Ferrari many years ago, and since updated by Alan Batson, Mike Lack, and Anita Jones.
+Erickson, Jon. Hacking : The Art of Exploitation, No Starch Press, Incorporated, 2008.
+
 
 https://www.tutorialspoint.com/assembly_programming/assembly_introduction.htm
-
 https://research.ncl.ac.uk/game/mastersdegree/programmingforgames/pointers/pointers.pdf
-
-
-
-Erickson, Jon. Hacking : The Art of Exploitation, No Starch Press, Incorporated, 2008. ProQuest Ebook Central, http://ebookcentral.proquest.com/lib/rit/detail.action?docID=1137538.
-Created from rit on 2022-11-02 14:07:18.
-
-
-
-
-
-%x for hexadecimal %i for integers
