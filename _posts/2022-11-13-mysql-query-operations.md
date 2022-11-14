@@ -132,6 +132,19 @@ Syntax:
 
 Note: MySQL does not enforce union compatibility for differences (it does for unions). In order to make sure it is union compatible, it must be enforced in the statement. 
 
+Subqueries can be used in MySQL to perform a difference operation. See more on [Subqueries](#subqueries) below. 
+
+Example: 
+
+To select all students that aren't part timers:
+
+```sql
+SELECT * 
+FROM student
+WHERE stuID NOT IN(
+  SELECT stuID
+  FROM part_timers);
+```
 
 
 <div align="center">── ⋅ ⋅ ── ✩ ── ⋅ ⋅ ──</div>
