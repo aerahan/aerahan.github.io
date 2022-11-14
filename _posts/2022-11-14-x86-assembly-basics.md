@@ -21,9 +21,9 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 
 <br>
 <br>
-<br>
 
 ## Table of Contents
+
 1. [Advantages & Disadvantages of Assembly](#advantages-of-assembly-language)
 2. [Registers](#registers)
 3. [Directives](#directives)
@@ -34,37 +34,40 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 8. [Stack](#stack)
 9. [Sources](#sources)
 
-<br />
-<br />
-<br /> 
+<br>
+<br>
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
-  
-  
 
-
-
-
+<br>
+<br>
 
 ### Advantages of Assembly Language
+
 - Less memory
 - Shorter execution time & increased efficiency
 - Can write code to access registers
 - Helps understand processers and memory
 - Better control on hardware
 
+<br>
+
 ### Disadvantages of Assembly Language
+
 - Lack of portability due to machine-architecture dependence
 - Complex, and difficult syntax
 - Effort.
 
-  
-  
+<br>
+<br>
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
   
-    
-    
+<br>
+<br>
+
 ### Registers
+
 PC hardware has main components of a processor, memory, and registers.
 Registers are essential for assembly and are processor components that hold data and addresses. They are like variables for the processor. Most processors now have eight 32-bit general purpose registers. They have names but are currently used for a variety of purposes. Case also does not matter, so EDX and edx mean the same.
 
@@ -86,16 +89,16 @@ Registers are essential for assembly and are processor components that hold data
 
 *esp*, *ebp*, *esi*, and *edi* are general purpose registers but are also called pointers and indexes. esp and ebp hold 32-bit addresses which point to a memory location. 
 
-
-  
-
+<br>
+<br>
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
-  
 
-
+<br>
+<br>
 
 ### Directives
+
 Directives are instructions to the assembler. Some uses are to declare or reserve memory variables, declare code, data areas, etc. They start with `.`.
 `.model`, `.data`, and `.code` are all directives. `INVOKE` and `PROC` are also directives.
 
@@ -111,15 +114,16 @@ Directives are instructions to the assembler. Some uses are to declare or reserv
 
 here
 
-
-    
+<br>
+<br> 
     
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-    
-    
+<br>
+<br>
 
 ### Data Types
+
 Comments start with a semi-colon `;`. 
 
 - **BYTE** db - 1 byte
@@ -154,17 +158,16 @@ While network data uses big-endian, most systems assembly is compiled on use lit
 
 ![Endianness chart](/images/endianness.png)]
 
-
-    
-    
+<br>
+<br>
     
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-    
-    
-    
+<br>
+<br>  
 
 ### Operations
+  
 The basic syntax for instructions is typically `operation <destination>,<source>`. The destination and source values are usually a value, memory address, or a register.
     
 - **mov** *<destination>,<value>* - moves a value from source to destination
@@ -195,6 +198,8 @@ The **DUP** operator can be used to allocate space for an array or string.
 
 Syntax: `count DUP(argument)`
 
+<br>
+
 Example:
 
 ```c
@@ -209,15 +214,16 @@ myVar2 would be 5 bytes that all equal 0.
 
 myVar 3 would be 12 bytes, as "ABCDABCDABCD".
 
-
-    
+<br>
+<br>  
     
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-
-    
+<br>
+<br>
     
 ### Referencing & Dereferencing
+  
 A pointer is a memory location/variable that points to another memory location. 
     
 Dereferencing is used to acess or change data in a memory location that is pointed to by a pointer. 
@@ -234,16 +240,17 @@ add varNum,10 ;varNum = varNum + 10
 
 <here>
 ```
-
-
-    
+  
+<br>
+<br>
     
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-
-    
+<br>
+<br>  
     
 ### Importing Libraries
+  
 Just like other programming languages, assembly can also import libraries as a `.lib` file. The imports are dynamic and must be compiled. 
 The `includelib` directive is used to import a library (see [directives](#directives) for more information). 
 
@@ -253,16 +260,16 @@ Importing .lib files also uses `extern` or `PROTO`. Extern tells that a function
 
 `PROTO`, on the other hand, will set up a function. It is called with `INVOKE`. For example, `ExitProcess PROTO,dwExitCode:DWORD` and `INVOKE ExitProcess,0`.
 
-
-    
-    
+<br>
+<br>
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-
-    
+<br>
+<br>
     
 ### Stack
+  
 The stack grows from a high memory address to lower memory addresses.
 
 *Return address* refers to the address of the next instruction that should execute next after the current function. **EBP** is a stack related register that points to the base of the stack frame and **ESP** points to the top of the stack. ESP moves as data is pushed or popped from the stack since the top is what changes. Because EBP, on the other hand, is fixed, arguments and local variables can be accessed through EBP (such as EBP + 4, etc). Pushing and popping will subtract and add 4 to ESP, respectively (adding and removing data from bytes). 
@@ -347,13 +354,14 @@ extern scanf:NEAR
 end
 ```
 
-
-    
+<br>
+<br>
     
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-
-    
+<br>
+<br>
+<br>
     
 #### Sources & References
 
