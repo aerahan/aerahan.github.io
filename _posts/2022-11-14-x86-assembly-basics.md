@@ -23,13 +23,17 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 3. [Directives](#directives)
 4. [Data Types](#data-types)
 5. [Operations](#operations)
-6. [Referencing & Dereferencing(#referencing-dereferencing)
+6. [Referencing & Dereferencing](#referencing-dereferencing)
 7. [Importing Libraries](#importing-libraries)
 8. [Stack](#stack)
 [Sources](#sources)
 
 
+
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
 
 
 ### Advantages of Assembly Language
@@ -45,7 +49,11 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 - Effort.
 
 
+
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
 
 
 ### Registers
@@ -54,7 +62,7 @@ Registers are essential for assembly and are processor components that hold data
 
 [![Chart of registers](/images/x86-registers.png)](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html)
 
-Source: From materials developed for University of Virginia cs216 by David Evans.
+<div align="center">*Source: From materials developed for University of Virginia cs216 by David Evans.*</div>
 
 - **EAX** - *Accumulator*
 - **ECX** - *Counter*
@@ -72,25 +80,36 @@ esp, ebp, esi, and edi are general purpose registers but are also called pointer
 
 
 
+
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
 
 
 ### Directives
 Directives are instructions to the assembler. Some uses are to declare or reserve memory variables, declare code, data areas, etc. They start with `.`.
 `.model`, `.data`, and `.code` are all directives. `INVOKE` and `PROC` are also directives.
 
-**Pointer directives** are size specifying directives. DWORD variables are technically pointers - they point to the first byte of the character array (that would be the value stored at the lowest memory, see [Endianness](#data types) for more). 
+
+**Pointer directives** are size specifying directives. DWORD variables are technically pointers - they point to the first byte of the character array (that would be the value stored at the lowest memory, see [Endianness](#data types) for more).
+
 ```asm
 .data
     myWord DWORD 112233h
 .code
     mov myWord 
 ```
+
 <here>
 
 
+    
+    
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
+    
+    
 
 ### Data Types
 Comments start with a semi-colon `;`. 
@@ -104,16 +123,20 @@ Comments start with a semi-colon `;`.
 **Syntax:** <name><type><value>
 
 Example variables and arrays:
+    
 ```asm
 myInt DWORD 10
 mySecondInt dd 20 ;this is also a DWORD
 message BYTE "ABC" ;an array of characters
 ```
+    
 Arrays in assembly can't be indexed like in other programming languages such as Python. 
 Hexadecimal characters can also be used to make escaped characters such as a newline. `0Ah` in particular is a newline while `0` is a null-terminator. 
+    
 ```asm
 message db "ABC",0Ah,0 ;this puts a new line after 'ABC'
 ```
+    
 Variables can be declared in the `.data` directive section. 
 
 
@@ -124,11 +147,18 @@ While network data uses big-endian, most systems assembly is compiled on use lit
 ![Endianness chart](/images/endianness.png)]
 
 
+    
+    
+    
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
+    
+    
+    
 
 ### Operations
 The basic syntax for instructions is typically `operation <destination>,<source>`. The destination and source values are usually a value, memory address, or a register.
+    
 - **mov** *<destination>,<value>* - moves a value from source to destination
 - **sub** *<dest>,<src>* - subtracts source from destination and stores in destination
 - **add** *<dest>,<src>* - adds values and stores in destination
@@ -172,12 +202,18 @@ myVar2 would be 5 bytes that all equal 0.
 myVar 3 would be 12 bytes, as "ABCDABCDABCD".
 
 
+    
+    
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 
+    
+    
 ### Referencing & Dereferencing
 A pointer is a memory location/variable that points to another memory location. 
+    
 Dereferencing is used to acess or change data in a memory location that is pointed to by a pointer. 
+    
 Referencing is where the address of an existing variable is used and a pointer variable is set to point at that address location. 
 
 To dereference in assembly, use square brackets to access the value at an address, such as `[eax]` to acess the memory address held in the EAX register (if held). In the C programming language, this is equivalent to using `*`. 
@@ -192,9 +228,13 @@ add varNum,10 ;varNum = varNum + 10
 ```
 
 
+    
+    
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 
+    
+    
 ### Importing Libraries
 Just like other programming languages, assembly can also import libraries as a `.lib` file. The imports are dynamic and must be compiled. 
 The `includelib` directive is used to import a library (see [directives](#directives) for more information). 
@@ -206,10 +246,14 @@ Importing .lib files also uses `extern` or `PROTO`. Extern tells that a function
 `PROTO`, on the other hand, will set up a function. It is called with `INVOKE`. For example, `ExitProcess PROTO,dwExitCode:DWORD` and `INVOKE ExitProcess,0`.
 
 
+    
+    
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 
+    
+    
 ### Stack
 The stack grows from a high memory address to lower memory addresses.
 
@@ -296,9 +340,13 @@ end
 ```
 
 
+    
+    
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 
+    
+    
 #### Sources & References
 
 Introduction to x86 Assembly for CSEC-201 by [Gahyun Park](https://www.rit.edu/directory/gxpics-gahyun-park)
