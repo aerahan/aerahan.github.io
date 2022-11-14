@@ -22,7 +22,20 @@ In the example of `EMPLOYEE(ssn, name, dob)`, `ssn`, `name`, and `dob` are attri
 
 
 <div align="center">────── ⋅ ⋅ ──── ✩ ──── ⋅ ⋅ ──────</div>
+```css
+#header h1 { 
+  color: #fff;
+  margin-bottom: 1.5em; 
+}
 
+.author-avatar {
+  border-radius: 5px;
+  display: block;
+  height: 60px;   
+  margin-right: 30px;
+  width: 60px;
+}
+```
 
 ### Relational Algebra
 Relational algebra is a way to query data in a relation. It is similar to sets and set operations. It consists of variables that represent relations and operators that represent the actions taken with the relations. The `DISTINCT` keyword can be used to remove duplicate rows from a result set, such as `SELECT DISTINCT...`
