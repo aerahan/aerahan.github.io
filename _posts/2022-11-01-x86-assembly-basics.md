@@ -82,10 +82,11 @@ Directives are instructions to the assembler. Some uses are to declare or reserv
 **Pointer directives** are size specifying directives. DWORD variables are technically pointers - they point to the first byte of the character array (that would be the value stored at the lowest memory, see [Endianness](#data types) for more). 
 ```asm
 .data
-  myWord DWORD 112233h
+    myWord DWORD 112233h
 .code
-  mov myWord 
+    mov myWord 
 ```
+FINISH THIS 
 
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
@@ -135,6 +136,7 @@ The basic syntax for instructions is typically `operation <destination>,<source>
 - **div** *<src>* - divides `eax` by source.
 
 To compute `((10 + 20) * 2) / 5`:
+
 ```asm
 .data
   value DWORD 10
@@ -150,6 +152,25 @@ To compute `((10 + 20) * 2) / 5`:
   main endp
 end
 ```
+
+The **DUP** operator can be used to allocate space for an array or string. 
+
+Syntax: `count DUP(argument)`
+
+Example:
+
+```c
+myVar BYTE 20 DUP(?) 
+myVar2 BYTE 5 DUP(0)
+myVar3 BYTE 3 DUP("ABCD")
+```
+
+myVar would be 20 uninitialized bytes.
+
+myVar2 would be 5 bytes that all equal 0.
+
+myVar 3 would be 12 bytes, as "ABCDABCDABCD".
+
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
@@ -190,8 +211,89 @@ Importing .lib files also uses `extern` or `PROTO`. Extern tells that a function
 
 
 ### Stack
+The stack grows from a high memory address to lower memory addresses.
+
+*Return address* refers to the address of the next instruction that should execute next after the current function. **EBP** is a stack related register that points to the base of the stack frame and **ESP** points to the top of the stack. ESP moves as data is pushed or popped from the stack since the top is what changes. Because EBP, on the other hand, is fixed, arguments and local variables can be accessed through EBP (such as EBP + 4, etc). Pushing and popping will subtract and add 4 to ESP, respectively (adding and removing data from bytes). 
+
+In the stack frame of a function, arguments are pushed in reverse order. 
+
+Push and pop are *stack operations*. 
+
+The syntax is `push <value>` and `pop <location>`. This places the <value> on the stack and subtracts 4 from ESP, or movesv 4 bytes from the top of the stack into <location> and adds 4 to ESP.
+
+`push eax` would push the value that eax holds onto the stack. `pop eax` would move 4 bytes from the top of the stack into eax.
+
+Example: 
+
+Using *printf* using stack operations and imported legacy_stdio_definitions.lib
+Arguments should be pushed onto the stack in reverse order. 
+
+Translating the C equivalent of `printf("Hello World! Today is %s %d.\n", month, year)`
+
+This line of code has 3 arguments that must be pushed: the whole string itself,the string month, and the int year. For the first two, sinc ethey are strings, `offset` must be used to retrieve their memory address (For more on offset, refer to [Referencing & Dereferencing](#referencing-dereferencing) above).
+
+At the end, the arguments should be removed from the stack. This can be done by adding to ESP (which would be 4 times the number of arguments present, in this case, 3).
+
+```c
+.586
+.model flat,stdcall
+.stack 4096
+includelib libcmt.lib
+includelib legacy_stdio_definitions.lib
+ExitProcess PROTO,dwExitCode:DWORD
+extern printf:NEAR
+
+.data
+    year DWORD 2022
+    month BYTE "November",0
+    wholeLine BYTE "Hello World! Today is %s %d",0Ah,0
+
+.code
+    main PROC c
+        push year
+        push month
+        push wholeLine
+        
+        call printf
+        add esp,12
+
+        INVOKE ExitProcess,0
+    main endp
+end
+```
 
 
+Example 2:
+
+Using scanf
+
+The assembly equivalent of C `scanf("My number is: %d", &myNum)`:
+
+```asm
+.586
+.model flat,stdcall
+.stack 4096
+includelib libcmt.lib
+includelib legacy_stdio_definitions.lib
+ExitProcess PROTO,dwExitCode:DWORD
+extern scanf:NEAR
+
+.data
+    myNum DWORD ?
+    wholeLine BYTE "My number is: %d",0
+
+.code
+    main PROC c
+        push myNum
+        push wholeLine
+        
+        call scanf
+        add esp,8
+
+        INVOKE ExitProcess,0
+    main endp
+end
+```
 
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
