@@ -13,19 +13,15 @@ Low-level languages are faster than high-level but slower than machine languages
 
 This blog post covers Intel syntax (AT&T syntax also exists).
   
-  
-  
-  
-  
-  
-  
+&nbsp;
+&nbsp;
+&nbsp;
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
-
-
-
-
-
+<br>
+<br>
+<br>
 
 ## Table of Contents
 1. [Advantages & Disadvantages of Assembly](#advantages-of-assembly-language)
@@ -38,12 +34,10 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 8. [Stack](#stack)
 9. [Sources](#sources)
 
-  
-  
-  
-  
-  
-  
+<br />
+<br />
+<br /> 
+
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
   
   
