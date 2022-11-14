@@ -12,9 +12,19 @@ Low-level languages are faster than high-level but slower than machine languages
 <!--more-->
 
 This blog post covers Intel syntax (AT&T syntax also exists).
-
-
+  
+  
+  
+  
+  
+  
+  
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
+
+
+
 
 
 ## Table of Contents
@@ -30,9 +40,17 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 
   
   
+  
+  
+  
+  
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
   
   
+
+
+
+
 
 ### Advantages of Assembly Language
 - Less memory
