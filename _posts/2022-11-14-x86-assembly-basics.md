@@ -28,17 +28,11 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 8. [Stack](#stack)
 9. [Sources](#sources)
 
-
-
-
-
-
+  
+  
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
-
-
-
-
-
+  
+  
 
 ### Advantages of Assembly Language
 - Less memory
@@ -52,14 +46,12 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 - Complex, and difficult syntax
 - Effort.
 
-
-
-
+  
+  
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
-
-
-
-
+  
+    
+    
 ### Registers
 PC hardware has main components of a processor, memory, and registers.
 Registers are essential for assembly and are processor components that hold data and addresses. They are like variables for the processor. Most processors now have eight 32-bit general purpose registers. They have names but are currently used for a variety of purposes. Case also does not matter, so EDX and edx mean the same.
