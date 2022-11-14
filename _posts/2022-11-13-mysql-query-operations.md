@@ -22,6 +22,7 @@ In the example of `EMPLOYEE(ssn, name, dob)`, `ssn`, `name`, and `dob` are attri
 
 
 <div align="center">────── ⋅ ⋅ ──── ✩ ──── ⋅ ⋅ ──────</div>
+
 ```css
 #header h1 { 
   color: #fff;
