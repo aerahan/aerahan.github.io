@@ -26,12 +26,16 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 6. [Referencing & Dereferencing](#referencing-dereferencing)
 7. [Importing Libraries](#importing-libraries)
 8. [Stack](#stack)
-[Sources](#sources)
+9. [Sources](#sources)
+
+
 
 
 
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
+
+
 
 
 
@@ -62,28 +66,28 @@ Registers are essential for assembly and are processor components that hold data
 
 [![Chart of registers](/images/x86-registers.png)](https://www.cs.virginia.edu/~evans/cs216/guides/x86.html)
 
-<div align="center">*Source: From materials developed for University of Virginia cs216 by David Evans.*</div>
+*Source: From materials developed for University of Virginia cs216 by David Evans.*
 
 - **EAX** - *Accumulator*
 - **ECX** - *Counter*
 - **EDX** - *Data*
 - **EBX** - *Base*
 
-eax, ecx, edx, and ebx are mainly used as temporary variables for the processor to execute machine instructions. For these four, you can use subsections and split it into a 16-bit register. For example, the least two significant bytes of EAX can become a 16-bit AX, with the same going for ECX and CX. From there, the least significant byte of AX can become a single 8-bit register AL and the most significant byte of AX can become AH. However, these names all point to the same physical register, so a change in one will affect all others. For example, placing a number into DX will also affect EDX, DL, and DH. 
+*eax*, *ecx*, *edx*, and *ebx* are mainly used as temporary variables for the processor to execute machine instructions. For these four, you can use subsections and split it into a 16-bit register. For example, the least two significant bytes of EAX can become a 16-bit *AX*, with the same going for *ECX* and *CX*. From there, the least significant byte of *AX* can become a single 8-bit register *AL* and the most significant byte of *AX* can become *AH*. However, these names all point to the same physical register, so a change in one will affect all others. For example, placing a number into *DX* will also affect *EDX*, *DL*, and *DH*. 
 
 - **ESP** - *Stack Pointer*
 - **EBP** - *Base Pointer*
 - **ESI** - *Source Index*
 - **EDI** - *Destination Index*
 
-esp, ebp, esi, and edi are general purpose registers but are also called pointers and indexes. esp and ebp hold 32-bit addresses which point to a memory location. 
+*esp*, *ebp*, *esi*, and *edi* are general purpose registers but are also called pointers and indexes. esp and ebp hold 32-bit addresses which point to a memory location. 
 
 
-
+  
 
 
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
-
+  
 
 
 
