@@ -105,7 +105,7 @@ Directives are instructions to the assembler. Some uses are to declare or reserv
     mov myWord 
 ```
 
-<here>
+here
 
 
     
