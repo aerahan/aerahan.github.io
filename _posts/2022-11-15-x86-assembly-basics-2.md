@@ -41,7 +41,7 @@ To call a function, the syntax is `call <label>` where label is the function 'na
 `ret` is basically **pop eip** and obtains the return address. This assumes that the stack pointer, *esp*, is currently pointing at the return address (eip). All stack usage inside of called functions must be cleaned up. 
   
 
-**STDCALL Convention**
+**x86 STDCALL Convention**
   To pass arguments to a called function, arguments should be pushed in reverse order to the stack. To return a value to the caller, the return value should be restored in the **eax** register.
   
   Example: Convert C program to ASM:
@@ -69,3 +69,23 @@ E:
 ```
   
   
+If the value is changed by the called function but you need to keep the original value, save the register.
+```asm
+E:
+    mov ebx, 10
+    push ebx ;this saves it
+    
+    push 50
+    push 10
+    call E
+    add esp,8
+    
+    pop ebx ;this restores it so ebx is now 10 again
+    add ebx,eax
+```
+
+The push and pops can also be done by the called function before and after the ebx register (in the example) is used or changed. 
+
+The caller function must save/push the eip register (this is already done in the `call` instruction!). The callee (function) must save/push the ebp register (this would be done with `ret`). 
+
+Since **EPB** always points at the base of the stack, the value saved at **EBP** should be the saved base pointer of the calling function. `EBP + 4` would be the saved **EIP** pushed during the `call` instruction. This tells the processor where to return to. `EBP + 8` would be the first argument, `EBP + 12` would be the second argument, and `EBP + 16` would be the third argument. More can be read in [part 1](https://aerahan.github.io/x86-assembly-basics#stack).
