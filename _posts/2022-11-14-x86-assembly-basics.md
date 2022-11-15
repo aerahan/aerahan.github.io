@@ -29,7 +29,7 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 3. [Directives](#directives)
 4. [Data Types](#data-types)
 5. [Operations](#operations)
-6. [Referencing & Dereferencing](#referencing-&-dereferencing)
+6. [Referencing & Dereferencing](#referencing-and-dereferencing)
 7. [Importing Libraries](#importing-libraries)
 8. [Stack](#stack)
 9. [Sources](#sources)
@@ -222,7 +222,7 @@ myVar 3 would be 12 bytes, as "ABCDABCDABCD".
 <br>
 <br>
     
-### Referencing & Dereferencing
+### Referencing and Dereferencing
   
 A pointer is a memory location/variable that points to another memory location. 
     
