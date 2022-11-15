@@ -310,8 +310,8 @@ extern printf:NEAR
 .code
     main PROC c
         push year
-        push month
-        push wholeLine
+        push offset month
+        push offset wholeLine
         
         call printf
         add esp,12
@@ -339,12 +339,12 @@ extern scanf:NEAR
 
 .data
     myNum DWORD ?
-    wholeLine BYTE "My number is: %d",0
+    format BYTE "My number is: %d",0
 
 .code
     main PROC c
         push myNum
-        push wholeLine
+        push offset format
         
         call scanf
         add esp,8
