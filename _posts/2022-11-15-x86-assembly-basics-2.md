@@ -89,3 +89,9 @@ The push and pops can also be done by the called function before and after the e
 The caller function must save/push the eip register (this is already done in the `call` instruction!). The callee (function) must save/push the ebp register (this would be done with `ret`). 
 
 Since **EPB** always points at the base of the stack, the value saved at **EBP** should be the saved base pointer of the calling function. `EBP + 4` would be the saved **EIP** pushed during the `call` instruction. This tells the processor where to return to. `EBP + 8` would be the first argument, `EBP + 12` would be the second argument, and `EBP + 16` would be the third argument. More can be read in [part 1](https://aerahan.github.io/x86-assembly-basics#stack).
+
+
+
+
+
+
