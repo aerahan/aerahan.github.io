@@ -107,12 +107,39 @@ Directives are instructions to the assembler. Some uses are to declare or reserv
 
 ```asm
 .data
-    myWord DWORD 112233h
+    myWord DWORD 11223344h
 .code
-    mov myWord 
+    mov myWord, 22h
+    ;that line is the same as 'mov [myWord], 22h'
+    mov eax, myWord ;this now holds 00000022h
 ```
 
-here
+eax holds 00000022h because the line `mov myWord, 44h` moves 4 bytes to the myWord memory location. As noted in the comment, this is the same as `mov [myWord], 22h`, and `mov DWORD PTR [myWord], 22h` (where *DWORD PTR* is a size directive telling that 4 bytes should be moved to memory starting at myWord, which due to little endian would be the 44.)
+
+Automatically, since DWORDs are 4 bytes, 4 bytes would be moved. To move less bytes, a smaller size of data must be specified. This can be done with *PTR*, which will force it to be a pointer of specified size. These include `DWORD PTR` with 4 bytes, `WORD PTR` with 2 bytes, and `BYTE PTR` with 1 byte. See more on [data types & size](#data-types) in the next section below.
+
+Therefore, moving only 1 byte (33h) to the previous example could be done with *BYTE PTR* like so: 
+
+```asm
+.data
+    myWord DWORD 11223344h
+    
+.code
+    mov BYTE PTR [myWord], 33h ;this would make it 11223333h
+```
+
+Similarly, moving 1 byte (22h) to another location instead of starting at myWord could be done like so (see [stack](#stack) for more on locating variables):
+
+```asm
+.data
+    myWord DWORD 11223344h
+    
+.code
+    mov BYTE PTR [myWord+3], 22h ;this would make it 22223333h
+```
+
+The variable locations can be seen below: 
+![variable locations](/images/pointer_directives.png)]
 
 <br>
 <br> 
