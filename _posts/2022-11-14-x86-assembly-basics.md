@@ -257,7 +257,7 @@ Dereferencing is used to acess or change data in a memory location that is point
     
 Referencing is where the address of an existing variable is used and a pointer variable is set to point at that address location. 
 
-To dereference in assembly, use square brackets to access the value at an address, such as `[eax]` to acess the memory address held in the EAX register (if held). In the C programming language, this is equivalent to using `*`. 
+To dereference in assembly, use square brackets to access the value at an address, such as `[eax]` to access the value held in the EAX register (if held). In the C programming language, this is equivalent to using `*`. 
 To reference in assembly, use `offset <variable>` to get the address of the variable. In the C programming language, this is equivalent to using `&`.
 
 ```asm
