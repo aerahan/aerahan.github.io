@@ -265,7 +265,7 @@ varNum DWORD 20 ;int varNum = 20
 mov ebx,offset var ;int *ebx = &varNum 
 add varNum,10 ;varNum = varNum + 10
 
-<here>
+HERE
 ```
   
 <br>
