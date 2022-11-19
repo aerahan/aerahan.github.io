@@ -56,3 +56,20 @@ pfSense is all set!
 
 #### Windows Server 2022
 
+
+
+
+
+
+
+## References & Resources
+### References
+
+
+### Extra Resources to Check Out!
+
+
+
+Samba: https://www.linuxshelltips.com/install-samba-rockylinux-almalinux/
+
+starting nfs service https://www.ibm.com/docs/ru/psfa/1.6?topic=software-configuring-nfs-export
