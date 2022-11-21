@@ -10,6 +10,26 @@ A compiled list of linux commands that I'll keep adding to. Includes a general l
 
 <!--more-->
 
+### Command Line Shortcuts
+
+Keyboard shortcuts can be used on the command line. Here is a table of common ones:
+
+| Shortcut        | Description                                 |
+| --------------- | ------------------------------------------- |
+| sudo !!         | runs previous command as sudo               |
+| tab             | tab completion / auto-complete              |
+| \ (backslash)   | go to new line for long commands            |
+| Ctrl + A        | jump to beginning of command line           |
+| Ctrl + E        | jump to end                                 |
+| Ctrl + U        | Clear from cursor to beginning              |
+| Ctrl + K        | Clear from cursor to end                    |
+| Ctrl + LftArr   | jump to beginning of previous word          |
+| Ctrl + RgtArr   | jump to end of next word                    |
+| Ctrl + R        | search history list of commands for pattern | 
+
+<br>
+<br>
+
 ### Linux Commands
 - [**ls**](#ls) - list files and directories
 - [**man**](#man) - manual page for commands
