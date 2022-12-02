@@ -1,5 +1,5 @@
 ---
-title: "Beginning System Administration Lab Walkthrough"
+title: "Beginner Sytems Administration"
 layout: post
 date: 2022-11-17
 feature_image: images/
