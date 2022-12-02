@@ -12,7 +12,7 @@ This is a walkthrough of basic systems administration tasks along with creating 
 
 ## Table of Contents
 1. [Setting up infrastructure](#setting-up-the-lab-infrastructure)
-2. 
+2. [Active Directory](#active-directory)
 
 <br>
 <br>
@@ -26,6 +26,10 @@ This is a walkthrough of basic systems administration tasks along with creating 
 2. [Windows Server 2022](#windows-server-2022)
 3. [Rocky Linux](#rocky-linux)
 4. [Windows 10](#windows-10)
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
 
 #### pfSense
 
@@ -61,6 +65,7 @@ Figure 5
 The gateway, pfSense, is all set! 
 
 <br>
+<div align="center">»»——————————-　✼　-——————————««</div>
 <br>
 
 #### Windows Server 2022
@@ -85,6 +90,9 @@ Open a web browser and in the search bar, enter the IP address of the pfSense LA
 
 When done, you'll be taken back to the dashboard. Time to deploy the two client machines!
 
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
 
 #### Rocky Linux
 
@@ -102,6 +110,9 @@ Let's set the static IP address for now. Go to *Settings*, *Network*, and click 
 
 Verify the IP address has been set correctly with the command `ip a` or `ifconfig`. 
 
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
 
 #### Windows 10
 
@@ -118,6 +129,82 @@ Verify that the correct hostname and IP address has been assigned by using the c
 
 That's it for setting up! Time to move on to Active Directory! 
 
+
+<br>
+<br>
+<div align="center">»»————————————————————————————-　✼　-————————————————————————————««</div>
+<br>
+<br>
+
+### Active Directory
+
+Active directory is a directory service used to manage information such as user accounts, devices, and authentication. You can read more about Active Directory in my upcoming post which I will link soon.
+
+1. [Install Services](#installing-services)
+
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### Installing Services
+
+On the Windows Server 2022 machine, Active Directory Domain Services (AD DS), Domain Name Service (DNS), and Dynamic Host Configuration Protocol (DHCP) needs to be installed. To do so, open *Server Manager*, and on the Dashboard, select *Manage* in the top right and click the *Add Roles and Features* dropdown. 
+
+When asked for the Installation Type, select *Role-based or feature-based installation* and continue. On the next page, select the correct server and continue. The page now is for selecting server roles. The three roles, **DHCP**, **AD DS**, and **DNS Server** should be selected. For each service, when prompted, default features may be selected. Continue on until the end and keep in mind that a restart will need to be done after the services are all configured (no need to check the box on the last window to restart the server, as it is not needed for installation). 
+
+After the installations are finished, the services can be seen in the dashboard of *Server Manager*. 
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### AD Services Configuration
+
+Now, in the top right, the flag will have a yellow triangle warning sign. The drop down will have an option titled *Promote this server to a domain controller*. Click it to launch the AD Services Configuration Wizard. On the Deployment Configuration screen, select *Add a new forest* as the deployment operation and enter the domain (in our example, it would be `aera123.com`. The next page with the Domain Controller Options will allow you to enter a password for Restore Mode - just in case. 
+
+The third screen, DNS Options, will have you create a delegation, but for this lab, it is not needed. Go to the next page. 
+
+The fourth screen, Additional Options, will auto-fill the NetBIOS domain name, so there is no need to touch it. The fifth screen, Paths, can just have the defaults used for where to place the ADDS files. 
+
+The sixth screen, Review Options, will let you review your chosen settings. If you wish, you can click *View script* and save the file to reuse the options later on. Next! 
+
+When the checks are finished, click install. You may be prompted to restart and change the Admin password. 
+
+#### DHCP Configuration
+
+Click on the flag with the yellow warning triangle in the top left again. This time, select *Complete DHCP Configuration* from the drop down. On the second screen, Authorization, you can choose who has authorization to make changes to the DHCP server. Select the Administrator account and finish. 
+
+On the Server Manager dashboard, select *Tools* and click *DHCP* from the dropdown. 
+
+Expand the server on the left, then expand the IPv4. Right click the IPv4 and click *New Scope*. 
+
+In the New Scope Wizard, when asked for a name and description, enter anything such as "lab" and "private network". Next, you can define the range of IP addresses that are available to assign devices. An example is a start IP of `192.168.1.1` to the end of `192.168.1.254`. Enter the subnet mask, which in this case, would be `255.255.255.0`. 
+
+On the next page, enter two excluded address ranges: one will be the gateway, and another will be a future server. First, exclude the IP address that was assigned to the default gateway, which is the pfSense LAN interface. We assigned it to be `192.169.1.254`, so exclude that address. The next exclusion will be a range for servers - such as 192.168.1.1 to 192.168.1.10. 
+
+You'll want to select *Yes, I want to configure these options now* for configuring DHCP options. Next ,enter the pfSense default gateway address (we used `192.169.1.254`) and add it on the list. Click next. 
+
+On the next page, a public server should be assigned for the secondary DNS. To do this, add the IP address. There should now be two listed. (`8.8.8.8` is a good one). 
+
+Soon, select the option *Yes, I want to activate this scope now* on the Activate Scope page. Finish the configuration. It should now show as an *Active* status in the DHCP window.
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### Create User Account
+
+Windows Active Directory can be used to create and authenticate a user. On the Windows Server 2022 VM, go to the Server Manager dashboard. Select *Tools* in the top right and in the dropdown select *Active Directory Users and Computers*. In the window that pops up, right click on your domain, and in the dropdown select *New* then *User*. 
+
+Enter the user information and a password. When finished, the user will appear in the domain. 
+
+
+<br>
+<br>
+<div align="center">»»————————————————————————————-　✼　-————————————————————————————««</div>
+<br>
+<br>
 
 
 ## References & Resources
