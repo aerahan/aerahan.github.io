@@ -1,5 +1,5 @@
 ---
-title: "Beginner Sytems Administration"
+title: "Beginner Systems Administration"
 layout: post
 date: 2022-11-17
 feature_image: images/linux_background.png
@@ -8,7 +8,7 @@ tags: [networking, sysadmin]
 
 This is a walkthrough of basic systems administration tasks along with creating a lab with virtual machines on VMWare Workstation. It will include setting up a lab infrastructure, using AD, and RAID. 
 
-<!-- more -->
+<!--more-->
 
 ## Table of Contents
 1. [Setting up infrastructure](#setting-up-the-lab-infrastructure)
