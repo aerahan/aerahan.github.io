@@ -238,6 +238,9 @@ skip
 
 1. [Deploy Storage Server](#deploy-a-storage-server)
 2. [Format and Mount Drives](#format-and-mount-drives)
+3. [RAID 1 & MBR Table](#raid-1-&-mbr-partition-table)
+4. [RAID 5 & GPT Table](#raid-5-&-gpt-partition-table)
+5. [Persistent Mounts](#persistent-mount)
 
 
 #### Deploy a Storage Server
@@ -250,7 +253,90 @@ When done deploying the eight drives, power on the VM.
 
 Using the command `which mdadm` and `lsblk` will show that the drives have been created. 
 
-#### Format and Mount Drives
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### Format and Mount Drive
+
+Format the first drive using `mkfs`. (Not the system drive!) The first drive is likely to be `nvme0n2`. Use the command `mkfs -t xfs /dev/nvme0n2` to format the drive as an XFS file type. Then, create a directory to mount the formatted drive to, which will serve as the mount point. Mount, using the command `mount /dev/nvme0n2 /media/samba` where /media/samba is the newly created directory. The `df -h` command can be used to see if the device mounted correctly. 
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### RAID 1 & MBR Partition Table
+
+RAID 1 is a mirrored RAID array. Here, we will create a RAID 1 then partition it with a MBR partition table (Master Boot Record). 
+
+Create a new array using two drives. The command `mdadm --create /dev/md0 --level=1 --raid-devices=2 /dev/nvme0n[34]` should do it. Use the `cat /proc/mdstat` command to confirm it worked. 
+
+Partition /dev/md0 with *fdisk*. Use the command `fdisk /dev/md0`. Follow the options - the letter `m` will display all commands in fdisk. 
+
+Create an MBR partition table (DOS partition table), add a new partition, and set the primary partition to be 1GB in size. Make a second partition as an extended partition using all remaining available space (don't specify). Creat ea third logical partition. Write the table to the disk and exit. The options likely follow o, n, p, 1, default, +G, etc. 
+
+Run the command `ls /dev |grep md0` to check if you were successful. There should be an md0, md0p1, md0p2, and md0p5. 
+
+The primary and logical partitions should now be formatted. (Do not format md0 as it is the raw block device that contains the partition table! Also, do not format the extended partition! Using `fdisk -l | grep md0` will help you find the extended partition. Avoid that one. 
+
+You can format the primary and logical partitions using `mkfs -t xfs /dev/md0p1` and `mkfs -t xfs /dev/md0p5`. Create two directories and mount the partitions to them. 
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### RAID 5 & GPT Partition Table
+
+Use the next three drives to create a RAID 5 using the command `mdadm --create /dev/md1 --level=5 --raid-devices=3 /dev/nvme0n[567]`. Ensure the RAID is active by using `cat /proc/mdstat`. 
+
+Run the `gdisk` command to partition the RAID. Use `m` to see the command options. You will create a GPT partition table with three partitions (2GB each), and use the default for the hex code. Write the partition table and then exit. 
+
+Format the partitions - not md1! `sudo mkfs -t xfs /dev/md1p1` and the same for the other two partitions. 
+
+Using the command `ls /dev | grep md1` should show the newly created partitions. 
+
+Create three directories and mount each partition to one. 
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### Persistent Mount
+
+The /etc/fstab file can be edited to make mounts persistent - meaning that after the machine is rebooted, they will still be there. Make sure to take a snapshot before touching the /etc/fstab file! 
+
+`blkid` can be used to find the UUIDs. Note them down. 
+
+Use root and vi to edit the /etc/fstab file. At the end of the file, enter the UUID, the mount point, file type, defaults, and 0 0. An example is like this: 
+
+`UUID=123456-abcd78-90efc-987654    /media/samba    xfs   defaults    0 0`
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+#### RAID 5 Redundancy
+
+Redundancy helps in the case that one drive fails. In this section, we will cause a disk to fail, then replace the drive and rebuild the array (no data loss). 
+
+First, create a directory in one of the partitions of the RAID 5 (in the directory of the mount point). If you don't know where the RAID is mounted, use `lsblk` to help. Place test files in the directory. 
+
+Drive failure: enter this command: `mdadm /dev/md1 -f /dev/nvme0n5` (where nvme0n5 is one of the RAID 5 drives). The drive is now faulty!
+
+Remove the faulty drive with `mdadm /dev/md1 -r /dev/nvme0n5`. 
+
+Check `mdadm -detail /dev/md1` to see that the array is indeed in degraded mode. If you check the newly created directory, the files should still be there. 
+
+Rebuild the array and add the drive back with this command: `mdadm --manage /dev/md1 -a /dev/nvme0n5`. 
+
+Check if the drive is fine with `mdadm -D /dev/md1`. The drives should be active.
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+### Logical Volumes
+
 
 
 <br>
@@ -258,6 +344,105 @@ Using the command `which mdadm` and `lsblk` will show that the drives have been 
 <div align="center">»»————————————————————————————-　✼　-————————————————————————————««</div>
 <br>
 <br>
+
+which python
+
+```py
+#!/usr/bin/python3 
+# Comment
+
+# imports
+import os 
+import time
+import subprocess
+
+# font deco
+
+RED = "\033[91m"
+NORMAL = "\033[0m"
+BLUE = "\033[96m"
+
+def findFile(fileName):
+    command = ['locate', fileName]
+    output = subprocess.Popen(command, stdout = subprocess.PIPE).communicate()[0]
+    output = output.decode()
+    result = output.split('\n')
+    return result
+    
+def createShortcut():
+    os.system("clear")
+    fileName = input("Please enter the file name to create a shortcut: \t")
+    print("Searching, please wait...")
+    homePath = os.path.expanduser('~')
+    
+    fullPath = findFile(fileName)[0]
+    if(fullPath == ''):
+        print("Sorry, couldn't find " + fileName)
+        print("Returning to main menu...")
+    else:
+        yes = input("Found " + fullPath)
+        os.system("ln -s " + fullPath + " " + homePath + "/" + fileName)
+        print("Shortcut created! Reuturning to main menu...")
+        
+        
+        
+        
+homePath = os.path.expanduser('~')
+currentPath = os.getcwd()
+    
+
+```
+
+backup, restore
+
+rsync, samba, nfs, etc options
+
+rsync /student/home/* /backup
+
+logger backup complete
+
+sudo crontab -e -u root script.py
+
+chmod +x script.py
+
+
+`cat crontab`
+
+example: 30 20 10 06 * /home/backups/fullbackup.sh
+This runs fullbackup.sh every June 10th at 8:30 PM. The asterisk means to run it every day of the week.
+
+00 11, 16 * * * /home/backups/backup.py
+
+This would run backuip.py at 11AM and 4PM every day, every month, and every day of the week. 
+
+Here is the order: 
+
+minute, hour, day of month, month,m day of week, command 
+(0-59), (0-23), (1-31), (1-12), (0-6 where sunday is 0)
+
+
+Commands: 
+```
+crontab -l    // lists user's crontab
+crontab -e    // edits user's crontab
+crontab -r    // deletes user's crontab
+```
+
+logger command: 
+`logger Test Message!`
+`00 11, 16 * * * logger Hello!`
+
+
+
+
+
+
+To verify correctly working use ‘firewall-cmd -list-services’ and then reload 
+Firewall-cmd –permanent –add-service=samba
+Firewall-cmd –reload (firewall not running? Systemctl start firewalld)
+Sudo useradd hbin -s /sbin/nologin 
+	Cat /etc/passwd
+Firewall-cmd –permanent –add-port=21/tcp
 
 
 ## References & Resources
