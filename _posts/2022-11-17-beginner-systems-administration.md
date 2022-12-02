@@ -2,7 +2,7 @@
 title: "Beginner Sytems Administration"
 layout: post
 date: 2022-11-17
-feature_image: images/
+feature_image: images/linux_background.png
 tags: [networking, sysadmin]
 ---
 
