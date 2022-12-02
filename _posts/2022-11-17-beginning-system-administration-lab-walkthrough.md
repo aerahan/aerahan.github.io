@@ -13,6 +13,8 @@ This is a walkthrough of basic systems administration tasks along with creating 
 ## Table of Contents
 1. [Setting up infrastructure](#setting-up-the-lab-infrastructure)
 2. [Active Directory](#active-directory)
+3. 
+4. [RAID Partitioning](#raid-partitioning)
 
 <br>
 <br>
@@ -141,6 +143,10 @@ That's it for setting up! Time to move on to Active Directory!
 Active directory is a directory service used to manage information such as user accounts, devices, and authentication. You can read more about Active Directory in my upcoming post which I will link soon.
 
 1. [Install Services](#installing-services)
+2. [AD Services Configuration](#ad-services-configuration)
+3. [DHCP Configuration](#dhcp-configuration)
+4. [Create User Account](#create-user-account)
+5. [Remote Active Directory](#remote-active-directory)
 
 
 <br>
@@ -198,6 +204,53 @@ Soon, select the option *Yes, I want to activate this scope now* on the Activate
 Windows Active Directory can be used to create and authenticate a user. On the Windows Server 2022 VM, go to the Server Manager dashboard. Select *Tools* in the top right and in the dropdown select *Active Directory Users and Computers*. In the window that pops up, right click on your domain, and in the dropdown select *New* then *User*. 
 
 Enter the user information and a password. When finished, the user will appear in the domain. 
+
+To add the user to the Domain Admin group, right click the user and select *Add to a group*. On the new window, type in *domain* in the *Enter the object names to select* text box and then click *Check Names*. From the resulting list, select *Domain Admins*. Add the user to the group.
+
+To join the user to the Windows domain, first change the NIC settings on the two clients to receive their IP address via DHCP (automatically). On Windows 10, run Powershell as the administrator and use this command: `Add-Computer -DomainName aera123.com -Credential (Get-Credential)`. You can then input the username and password when prompted, then be asked to restart the system. 
+
+Select Other User to log in and use the new account to check it works. 
+
+On Rocky, ensure the system is updated as root with `sudo dnf -y update`. Join the user to the AD domain with the command `realm join --user=ahan aera123.com` where 'ahan' is the username. To verify, use `realm list`. 
+
+
+
+<br>
+<div align="center">»»——————————-　✼　-——————————««</div>
+<br>
+
+### Remote Active Directory
+
+On Windows 10, install Windows Admin Center from [here](https://www.microsoft.com/en-us/evalcenter/download-windows-admin-center). Select the *Open Windows Admin Center* box before finishing the install. When prompted with the certificate, select the certificate then continue. Install the Active Directory extension. It will appear in the Tools column.
+
+Now, connect to the server with the *Add* button in the top left, then the *Add* button in the Servers box. Enter the hostname of the Windows Server 2022, which should be `win22` if following along. It should be found by the system. Click add. Select the server then press the *Connect* button. 
+
+
+<br>
+<br>
+<div align="center">»»————————————————————————————-　✼　-————————————————————————————««</div>
+<br>
+<br>
+
+skip
+
+### RAID Partitioning
+
+1. [Deploy Storage Server](#deploy-a-storage-server)
+2. [Format and Mount Drives](#format-and-mount-drives)
+
+
+#### Deploy a Storage Server
+
+Create another Rocky Linux VM to be a storage server. We will partition drives on this server. To the new machine, give it a hostname such as rockyServer, and a static IP address from one of the excluded addresses that was configured in [DHCP](#dhcp-configuration). Update the system then power it off, and within VMWare Workstation Pro, add eight drives. On the VM settings machine, click *Add* and select *Hard Disk*. Select *NVMe* as the disk type and select *Create a new virtual disk*. 
+
+For the capacity, use 4 GB and store the image files in the same location as the VM linked clone files. Give it a meaningful name. 
+
+When done deploying the eight drives, power on the VM. 
+
+Using the command `which mdadm` and `lsblk` will show that the drives have been created. 
+
+#### Format and Mount Drives
 
 
 <br>
