@@ -20,6 +20,10 @@ This blog post covers Intel syntax (AT&T syntax also exists).
 <div align="center">.・。.・゜✭・.・✫・゜・。. </div>
 
 <br>
+```c
+  printf("Hello world")
+```
+
 <br>
 
 ## Table of Contents
